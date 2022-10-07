@@ -40,9 +40,9 @@ public class playerMouvment : MonoBehaviour
         if (theCollision.gameObject.name == "ground")
         {
             isGrounded = true;
-            Debug.Log("Collision enter");
+            
         }
-        Debug.Log("Collision enter out");
+       
     }
 
     void OnCollisionExit2D(Collision2D theCollision)
@@ -51,9 +51,9 @@ public class playerMouvment : MonoBehaviour
         {
             isGrounded = false;
 
-            Debug.Log("Collision exit");
+          
         }
-        Debug.Log("Collision exit out");
+        
     }
 
 
@@ -79,6 +79,13 @@ public class playerMouvment : MonoBehaviour
         if (Input.GetKeyDown("space") && isGrounded == true)
         {
             rb2D.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+
+            int i = 10;
+            int y =  5;
+
+            Debug.Log(i + y);
+
+
         }
 
     }
