@@ -13,7 +13,7 @@ public class playerStatus : MonoBehaviour
 
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -76,8 +76,11 @@ public class playerStatus : MonoBehaviour
     }
 
     //function to increase the score
-    private void increaseScore(int point)
+    public void increaseScore(int point)
     {
         this.playerScoor = this.playerScoor + point;
+        Debug.Log(this.playerScoor);
     }
+
+   
 }

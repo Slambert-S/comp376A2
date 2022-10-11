@@ -83,7 +83,7 @@ public class playerMouvment : MonoBehaviour
             int i = 10;
             int y =  5;
 
-            Debug.Log(i + y);
+            Debug.Log(i * -1);
 
 
         }

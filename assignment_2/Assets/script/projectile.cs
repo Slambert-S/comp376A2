@@ -44,16 +44,30 @@ public class projectile : MonoBehaviour
     {
         if (theCollision.gameObject.tag == "border")
         {
-            //To-do c
-            //all function to refresh player shot
-            //call function to reduce HP
-            Destroy(this.gameObject);
-            this.belongTo.GetComponent<shooting>().reloadProjectile();
+            //To-do 
+            //all function to refresh player shot animation
+            this.removeAmo();
             this.playerStatus.setHp(50, false);
             Debug.Log("bullet reach the border");
 
         }
-        Debug.Log(theCollision);
+        else if(theCollision.gameObject.tag == "enemy")
+        {
+            int point = theCollision.GetComponent<enemy_stat>().getRow();
+            this.playerStatus.increaseScore(point);
+            Destroy(theCollision.gameObject);
+            this.removeAmo();
+
+        }
+
+
+    }
+
+    private void removeAmo()
+    {
+        Destroy(this.gameObject);
+        this.belongTo.GetComponent<shooting>().reloadProjectile();
+
     }
 
 }
