@@ -11,11 +11,15 @@ public class playerMouvment : MonoBehaviour
     private bool isGrounded = true;
     public float moveSpeed = 5;
     public int jumpForce = 3;
+    public int playerNumber;
+    public Animator animator;
 
     //Boolean for sprite animation
     private bool mMoving;
     private bool mGrounded;
     private bool mFalling;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +55,6 @@ public class playerMouvment : MonoBehaviour
         {
             isGrounded = false;
 
-          
         }
         
     }
@@ -60,31 +63,48 @@ public class playerMouvment : MonoBehaviour
     private void MoveCharacter()
     {
 
-        if (Input.GetKey("a"))
+        if(playerNumber == 1)
         {
-            xDirection = -1;
-        }
-        else if (Input.GetKey("d"))
-        {
-            xDirection = 1;
-        }
 
-        if(xDirection != 0)
-        {
-            transform.Translate(xDirection * moveSpeed * Time.deltaTime, 0, 0);
+            if (Input.GetKey("a"))
+            {
+                xDirection = -1;
+            }
+            else if (Input.GetKey("d"))
+            {
+                xDirection = 1;
+            }
+
+            if(xDirection != 0)
+            {
+                transform.Translate(xDirection * moveSpeed * Time.deltaTime, 0, 0);
+            }
+            xDirection = 0;
         }
-        xDirection = 0;
+        else if(playerNumber == 2)
+        {
+
+            if (Input.GetKey("j"))
+            {
+                xDirection = -1;
+            }
+            else if (Input.GetKey("l"))
+            {
+                xDirection = 1;
+            }
+
+            if (xDirection != 0)
+            {
+                transform.Translate(xDirection * moveSpeed * Time.deltaTime, 0, 0);
+            }
+            xDirection = 0;
+
+        }
 
         //if (mGrounded && Input.GetButtonDown("Jump"))
         if (Input.GetKeyDown("space") && isGrounded == true)
         {
-            rb2D.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-
-            int i = 10;
-            int y =  5;
-
-            Debug.Log(i * -1);
-
+           // rb2D.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
 
         }
 

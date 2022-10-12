@@ -11,6 +11,8 @@ public class playerStatus : MonoBehaviour
     private int playerLive = 3;
     public int playerScoor = 0;
 
+    public uiUpdate playerUi;
+
     void Start()
     {
        
@@ -41,8 +43,11 @@ public class playerStatus : MonoBehaviour
             {
                 //to-do : call function to remove a life
                 this.removelife();
+                
             }
         }
+
+        this.updateUI();
     }
 
     public void removelife()
@@ -59,6 +64,8 @@ public class playerStatus : MonoBehaviour
             Debug.Log("Player x lost a life");
         }
 
+        updateUI();
+
     }
 
     public void addLife()
@@ -67,6 +74,7 @@ public class playerStatus : MonoBehaviour
         {
             this.playerLive = this.playerLive + 1;
         }
+        updateUI();
     }
 
     private void killPlayer()
@@ -79,8 +87,26 @@ public class playerStatus : MonoBehaviour
     public void increaseScore(int point)
     {
         this.playerScoor = this.playerScoor + point;
-        Debug.Log(this.playerScoor);
+        updateUI();
+        
     }
 
-   
+    private void updateUI()
+    {
+        playerUi.updateUi(this.playerhp, this.playerLive, this.playerScoor);
+    }
+
+    public int getHelth()
+    {
+        return this.playerhp;
+    }
+    public int getLive()
+    {
+        return this.playerLive;
+    }
+    public int getScore()
+    {
+        return this.playerScoor;
+    }
+
 }

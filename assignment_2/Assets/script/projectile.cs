@@ -60,6 +60,8 @@ public class projectile : MonoBehaviour
 
         }
 
+        Debug.Log("collisions");
+
 
     }
 

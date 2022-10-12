@@ -17,6 +17,14 @@ public class lvlManager : MonoBehaviour
     public int enemySpeed = 3;
     public float spownSpeed = 4.0f;
 
+    public int gameLenght = 300;
+    public int nbGoon = 20;
+
+    private int nbWitch =0;
+    private float firstWitchTime =0;
+    private float secondaryWitchTime = 0;
+
+
     void Start()
     {
         // Fill the list that will handle the spown rate for the 3 section
@@ -34,8 +42,17 @@ public class lvlManager : MonoBehaviour
             spownLuck.Add(3);
         }
 
+        
+        //invoke goon
         InvokeRepeating("createEnemy", 1.0f, spownSpeed);
 
+        //get the first witch time spown
+        firstWitchTime = Random.Range(15.0f, 45.0f);
+
+        //Second witch time
+        secondaryWitchTime = Random.Range(15.0f, 30.0f);
+        //handle the creation of the witch
+        InvokeRepeating("createWitch", firstWitchTime, secondaryWitchTime);
     }
 
     // Update is called once per frame
@@ -62,6 +79,13 @@ public class lvlManager : MonoBehaviour
 
     }
 
+    private void createWitch()
+    {
+        nbWitch++;
+        Debug.Log("Witch spown");
+    }
+
+    //return a random spown point from the row selected , the object is used as a reference to place the new enemy
     private GameObject selectSpownPoint(int row)
     {
         if(row == 1)

@@ -8,10 +8,19 @@ public class shooting : MonoBehaviour
     public GameObject refProjectile;
     private int maxAmo = 1;
     private int currentAmo = 1;
+
+    private int playerController;
     // Start is called before the first frame update
+
+    public Animator animator ;
+    private GameObject amoSprite;
+
     void Start()
     {
-        
+        this.playerController =this.transform.GetComponentInParent<playerMouvment>().playerNumber;
+        animator = this.transform.GetComponentInParent<Animator>();
+        amoSprite = this.transform.parent.GetChild(0).gameObject;
+
     }
 
     // Update is called once per frame
@@ -21,20 +30,46 @@ public class shooting : MonoBehaviour
         if (currentAmo > 0)
         {
 
+            if(playerController == 1)
+            {
+                // Calling the function to create an amo an the required dirrection
+                if (Input.GetKeyDown("w"))
+                {
+                    createProjectile(0);
+                    changeAnimation(false);
+                    
+                }
+                if (Input.GetKeyDown("q"))
+                {
+                    createProjectile(-1);
+                    changeAnimation(false);
+                }
+                if (Input.GetKeyDown("e"))
+                {
+                    createProjectile(1);
+                    changeAnimation(false);
+                }
+            }
+            else if (playerController ==2)
+            {
+                // Calling the function to create an amo an the required dirrection
+                if (Input.GetKeyDown("i"))
+                {
+                    createProjectile(0);
+                    changeAnimation(false);
+                }
+                if (Input.GetKeyDown("u"))
+                {
+                    createProjectile(-1);
+                    changeAnimation(false);
+                }
+                if (Input.GetKeyDown("o"))
+                {
+                    createProjectile(1);
+                    changeAnimation(false);
+                }
+            }
             
-            // Calling the function to create an amo an the required dirrection
-            if (Input.GetKeyDown("w"))
-            {
-                createProjectile(0);
-            }
-            if (Input.GetKeyDown("q"))
-            {
-                createProjectile(-1);
-            }
-            if (Input.GetKeyDown("e"))
-            {
-                createProjectile(1);
-            }
         }
     }
 
@@ -52,7 +87,24 @@ public class shooting : MonoBehaviour
     {
         if(currentAmo < maxAmo)
         {
-        this.currentAmo = this.currentAmo+1;
+            this.currentAmo = this.currentAmo+1;
+            this.changeAnimation(true);
+        }
+    }
+
+    private void changeAnimation(bool val)
+    {
+        
+        amoSprite.SetActive(val);
+        
+        this.animator.SetBool("loaded", val);
+
+        if(currentAmo > 0)
+        {
+            amoSprite.SetActive(true);
+
+            this.animator.SetBool("loaded", true);
+
         }
     }
 }
