@@ -64,19 +64,24 @@ public class lvlManager : MonoBehaviour
 
     private void createEnemy()
     {
-        int spownRow = Random.Range(1, spownLuck.Count);
-        GameObject newSpown = selectSpownPoint(spownRow);
-        GameObject newEnemy =Instantiate(enemyRef);
 
-        float newScale = setNewScale(spownRow); //find the scale of the object
+        if(nbGoon > 0)
+        {
+            int spownRow = Random.Range(1, spownLuck.Count);
+            GameObject newSpown = selectSpownPoint(spownRow);
+            GameObject newEnemy = Instantiate(enemyRef);
 
-        newEnemy.GetComponent<enemy_stat>().row = spownRow;
-        newEnemy.GetComponent<enemy_stat>().speed = this.enemySpeed;
+            float newScale = setNewScale(spownRow); //find the scale of the object
 
-        Vector3 newZpos = setNewZPos(spownRow); // find the apropriate positions Z for the sprite
-        newEnemy.transform.position = new Vector3(newSpown.transform.position.x,newSpown.transform.position.y,newZpos.z);
-        newEnemy.transform.localScale = new Vector3(newScale, newScale, newScale);
-        
+            newEnemy.GetComponent<enemy_stat>().row = spownRow;
+            newEnemy.GetComponent<enemy_stat>().speed = this.enemySpeed;
+
+            Vector3 newZpos = setNewZPos(spownRow); // find the apropriate positions Z for the sprite
+            newEnemy.transform.position = new Vector3(newSpown.transform.position.x, newSpown.transform.position.y, newZpos.z);
+            newEnemy.transform.localScale = new Vector3(newScale, newScale, newScale);
+
+            nbGoon--;
+        }
 
     }
 

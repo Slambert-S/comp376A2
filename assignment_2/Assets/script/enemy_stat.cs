@@ -6,7 +6,7 @@ public class enemy_stat : MonoBehaviour
 {
     public int row = 1; // use row to determine the point value of basic enemy 
     public int speed = 3;
-    private float  direction = 0;
+    private int  direction = 0;
 
     private SpriteRenderer spriteHandler;
 
@@ -32,13 +32,13 @@ public class enemy_stat : MonoBehaviour
 
     private void enemyMove()
     {
-        transform.Translate(direction * speed * Time.deltaTime, 0, 0);
+        this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(direction*speed , 0, 0);
 
     }
 
     private void setNewDirection()
     {
-        direction = Random.Range(-1.0f, 1.0f);
+        direction = Random.Range(-1, 1);
         if(direction > 0)
         {
             this.spriteHandler.flipX = true;
@@ -47,27 +47,34 @@ public class enemy_stat : MonoBehaviour
             this.spriteHandler.flipX = false;
         }
     }
-
+    
     void OnTriggerEnter2D(Collider2D theCollision)
     {
         //Handeling the enemy hitting the wall
         if (theCollision.gameObject.tag == "border")
         {
-            float moveOfset = 0;
-            // select the ofset to move the sprite
-           if(direction < 0)
-           {
-                moveOfset = 0.2f;
-           }
-           else if(direction > 0)
-           {
-                moveOfset = -0.2f;
-           }
-           //Move the sprite to remove the collisions with the wall
-            transform.position = new Vector3(transform.position.x+(moveOfset), transform.position.y, transform.position.z);
-            // Stop the mouvment of the sprite 
-            direction = (direction * 0);
-            
+            /*
+              float moveOfset = 0;
+              // select the ofset to move the sprite
+             if(direction < 0)
+             {
+                  moveOfset = 0.2f;
+             }
+             else if(direction > 0)
+             {
+                  moveOfset = -0.2f;
+             }
+             //Move the sprite to remove the collisions with the wall
+              transform.position = new Vector3(transform.position.x+(moveOfset), transform.position.y, transform.position.z);
+              // Stop the mouvment of the sprite 
+              direction = (direction * 0);
+              */
+            swapX();
         }
+    }
+
+    public void swapX()
+    {
+        direction = (direction * -1);
     }
 }

@@ -12,6 +12,7 @@ public class playerStatus : MonoBehaviour
     public int playerScoor = 0;
 
     public uiUpdate playerUi;
+    public Animator animator;
 
     void Start()
     {
@@ -37,6 +38,7 @@ public class playerStatus : MonoBehaviour
         }
         else
         {
+            animator.SetTrigger("popUp");
             playerhp = playerhp - change;
             Debug.Log("life : " + this.playerLive + "   HP : " + this.playerhp);
             if(playerhp <= 0)

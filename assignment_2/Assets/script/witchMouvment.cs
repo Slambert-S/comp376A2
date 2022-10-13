@@ -31,7 +31,7 @@ public class witchMouvment : MonoBehaviour
 
     private void mouveWitch()
     {
-        this.gameObject.transform.Translate(mouvmentVector * speed * Time.deltaTime);
+        this.gameObject.GetComponent<Rigidbody2D>().velocity = mouvmentVector * speed; ;
     }
 
     private void setNewDirection()

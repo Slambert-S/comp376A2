@@ -54,7 +54,19 @@ public class projectile : MonoBehaviour
         else if(theCollision.gameObject.tag == "enemy")
         {
             int point = theCollision.GetComponent<enemy_stat>().getRow();
-            this.playerStatus.increaseScore(point);
+            theCollision.GetComponent<BoxCollider2D>().enabled = false;
+            bool enemyCollsion = theCollision.GetComponent<goonRaycast>().checkforEnemy();
+            theCollision.GetComponent<BoxCollider2D>().enabled = true;
+            Debug.Log(enemyCollsion);
+            if (enemyCollsion)
+            {
+                this.playerStatus.increaseScore(point + 5);
+            }
+            else
+            {
+
+                this.playerStatus.increaseScore(point);
+            }
             Destroy(theCollision.gameObject);
             this.removeAmo();
 
@@ -66,7 +78,7 @@ public class projectile : MonoBehaviour
 
         }
 
-        Debug.Log("collisions");
+        
 
 
     }

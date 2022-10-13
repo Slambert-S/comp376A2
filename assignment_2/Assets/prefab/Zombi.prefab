@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2959110358085454735}
   - component: {fileID: 4149293154297794845}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameAssetOne_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,8 @@ GameObject:
   - component: {fileID: 7265036205765236499}
   - component: {fileID: 2126635869065417868}
   - component: {fileID: 1734367120278075149}
-  m_Layer: 0
+  - component: {fileID: 6938367091347732269}
+  m_Layer: 11
   m_Name: Zombi
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -130,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   row: 1
-  speed: 3
+  speed: 2
 --- !u!61 &7265036205765236499
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -191,3 +192,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 10
+--- !u!114 &6938367091347732269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809900792692304375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 743aa09c4310d4d40ad0fcae39ea3b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
