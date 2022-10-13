@@ -7,6 +7,7 @@ public class enemy_stat : MonoBehaviour
     public int row = 1; // use row to determine the point value of basic enemy 
     public int speed = 3;
     private float  direction = 0;
+
     private SpriteRenderer spriteHandler;
 
 

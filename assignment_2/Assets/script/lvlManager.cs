@@ -14,6 +14,7 @@ public class lvlManager : MonoBehaviour
     private List<int> spownLuck = new List<int>();
 
     public GameObject enemyRef;
+    public GameObject witchRef;
     public int enemySpeed = 3;
     public float spownSpeed = 4.0f;
 
@@ -81,7 +82,14 @@ public class lvlManager : MonoBehaviour
 
     private void createWitch()
     {
+        int spownRow = Random.Range(1, spownLuck.Count);
+        GameObject newSpown = selectSpownPoint(spownRow);
+        GameObject newEnemy = Instantiate(witchRef);
+        Vector3 newZpos = setNewZPos(spownRow); // find the apropriate positions Z for the sprite
+        newEnemy.transform.position = new Vector3(newSpown.transform.position.x, newSpown.transform.position.y, newZpos.z);
+
         nbWitch++;
+
         Debug.Log("Witch spown");
     }
 

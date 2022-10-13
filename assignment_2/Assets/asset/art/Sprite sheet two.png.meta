@@ -161,8 +161,8 @@ TextureImporter:
         y: 569
         width: 453
         height: 575
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.49999994, y: 0.059040844}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,8 +182,8 @@ TextureImporter:
         y: 597
         width: 454
         height: 564
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.028473875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -220,12 +220,12 @@ TextureImporter:
       name: Sprite sheet two_35
       rect:
         serializedVersion: 2
-        x: 186
-        y: 10
+        x: 193
+        y: 28
         width: 454
         height: 481
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.50429606, y: 0.13911577}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -241,12 +241,12 @@ TextureImporter:
       name: Sprite sheet two_36
       rect:
         serializedVersion: 2
-        x: 838
-        y: 53
+        x: 842
+        y: 55
         width: 455
         height: 495
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.17831081}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

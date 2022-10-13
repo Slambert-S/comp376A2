@@ -59,6 +59,12 @@ public class projectile : MonoBehaviour
             this.removeAmo();
 
         }
+        else if (theCollision.gameObject.tag == "witch")
+        {
+            theCollision.gameObject.GetComponent<witchStatTraking>().hitOnWitch(playerStatus);
+            this.removeAmo();
+
+        }
 
         Debug.Log("collisions");
 
