@@ -10,6 +10,7 @@ public class shooting : MonoBehaviour
     private int currentAmo = 1;
 
     private int playerController;
+    private playerStatus refPlayerStatus;
     // Start is called before the first frame update
 
     public Animator animator ;
@@ -20,6 +21,7 @@ public class shooting : MonoBehaviour
         this.playerController =this.transform.GetComponentInParent<playerMouvment>().playerNumber;
         animator = this.transform.GetComponentInParent<Animator>();
         amoSprite = this.transform.parent.GetChild(0).gameObject;
+        refPlayerStatus = this.transform.GetComponentInParent<playerStatus>();
 
     }
 
@@ -49,6 +51,7 @@ public class shooting : MonoBehaviour
                     createProjectile(1);
                     changeAnimation(false);
                 }
+                
             }
             else if (playerController ==2)
             {
@@ -69,13 +72,21 @@ public class shooting : MonoBehaviour
                     changeAnimation(false);
                 }
             }
+
             
+
         }
     }
 
     void createProjectile(int projectileDirection)
     {
-        currentAmo = currentAmo - 1;
+        //if the player is NOT in the special mode remove the amo from the player
+        
+        if(refPlayerStatus.GetSpecialMode() != 1)
+        {
+            currentAmo = currentAmo - 1;
+
+        }
         GameObject curentProjectile = Instantiate(refProjectile);
         curentProjectile.GetComponent<projectile>().setDirection(projectileDirection);
         curentProjectile.GetComponent<projectile>().setBelongTo(this.gameObject);
