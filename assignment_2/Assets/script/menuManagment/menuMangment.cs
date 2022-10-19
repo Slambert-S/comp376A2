@@ -14,11 +14,19 @@ public class menuMangment : MonoBehaviour
         
     }
 
+    public void loadSecondLevel()
+    {
+        stateLevelController.loadedLvl = 2;
+        SceneManager.LoadScene("lvlTwo");
+    }
+
     public void goToMenu()
     {
         stateLevelController.nbPlayer = "nada";
         stateLevelController.loadedLvl = 0;
         Time.timeScale = 1;
+        stateLevelController.playerOneScore = 0;
+        stateLevelController.playerTwoScore = 0;
         SceneManager.LoadScene("menu");
 
     }

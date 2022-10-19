@@ -25,19 +25,41 @@ public class atomicParameter : MonoBehaviour
         {
             if(stateLevelController.nbPlayer == "single")
             {
-                goonSpeed = 6;
+                goonSpeed = 3;
+                spownSpeed = 2;
+                nbGoon = 40;
+                lifespan = 10;
+                refMultiPlayeSetUp.multiplayerUpdate();
+                refLvlManager.begingLevel();
+            }
+            else if(stateLevelController.nbPlayer == "double")
+            {
+                goonSpeed = 3;
+                spownSpeed = 2;
+                nbGoon = 60;
+                lifespan = 7;
+                refMultiPlayeSetUp.multiplayerUpdate();
+                refLvlManager.begingLevel();
+            }
+
+        }
+        if (stateLevelController.loadedLvl == 2)
+        {
+            if (stateLevelController.nbPlayer == "single")
+            {
+                goonSpeed = 4;
                 spownSpeed = 2;
                 nbGoon = 40;
                 lifespan = 4;
                 refMultiPlayeSetUp.multiplayerUpdate();
                 refLvlManager.begingLevel();
             }
-            else if(stateLevelController.nbPlayer == "double")
+            else if (stateLevelController.nbPlayer == "double")
             {
-                goonSpeed = 4;
+                goonSpeed = 5;
                 spownSpeed = 2;
-                nbGoon = 40;
-                lifespan = 10;
+                nbGoon = 60;
+                lifespan = 6;
                 refMultiPlayeSetUp.multiplayerUpdate();
                 refLvlManager.begingLevel();
             }

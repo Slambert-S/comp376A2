@@ -16,6 +16,7 @@ public class uiUpdate : MonoBehaviour
     void Start()
     {
         this.updateUi(playerStat.getHelth(), playerStat.getLive(), playerStat.getScore());
+        
     }
 
     // Update is called once per frame

@@ -14,7 +14,7 @@ public class enemy_stat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("setNewDirection", 1.0f, 3.0f);
+        InvokeRepeating("setNewDirection", 0.0f, 3.0f);
         spriteHandler = gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
 
     }

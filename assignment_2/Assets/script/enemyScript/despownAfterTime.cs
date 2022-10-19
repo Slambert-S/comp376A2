@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class despownAfterTime : MonoBehaviour
 {
-    public int lifeTime = 20;
+    public int lifeTime ;
     void Start()
     {
         

@@ -11,6 +11,7 @@ TagManager:
   - playerOne
   - playerTwo
   - mj
+  - turnip
   layers:
   - Default
   - TransparentFX

@@ -115,5 +115,11 @@ public class gameOver : MonoBehaviour
 
     }
 
+    public void timedGameOver()
+    {
+        nbCOntinue = 0;
+        startGameOver();
+    }
+
     
 }

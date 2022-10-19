@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     private float timeLeft;
     public Text displayTimer;
+    public GameObject gameHandler;
     void Start()
     {
         timeLeft = GameObject.Find("GameHandler").GetComponent<lvlManager>().gameLenght;
@@ -27,6 +28,8 @@ public class Timer : MonoBehaviour
         {
             // call action
             Debug.Log("End of game");
+            //Game over screen
+            gameHandler.GetComponent<gameOver>().timedGameOver();
         }
     }
 }

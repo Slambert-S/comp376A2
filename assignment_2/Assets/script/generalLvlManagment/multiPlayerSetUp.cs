@@ -11,10 +11,14 @@ public class multiPlayerSetUp : MonoBehaviour
     // Start is called before the first frame update
     public void multiplayerUpdate()
     {
+        //update the player score from the past level
+        playerOne.GetComponent<playerStatus>().startLevelSetting(1);
+     
         if(stateLevelController.nbPlayer == "double")
         {
             playerTwo.SetActive(true);
             playerTwoUi.SetActive(true);
+            playerTwo.GetComponent<playerStatus>().startLevelSetting(2);
         }
         if (stateLevelController.nbPlayer == "single")
         {
@@ -36,5 +40,18 @@ public class multiPlayerSetUp : MonoBehaviour
 
         return listPlayer;
 
+    }
+
+    public void savePlayerScore()
+    {
+
+        stateLevelController.playerOneScore = playerOne.GetComponent<playerStatus>().getScore();
+
+        if(stateLevelController.nbPlayer == "double")
+        {
+            stateLevelController.playerTwoScore = playerTwo.GetComponent<playerStatus>().getScore();    
+        }
+
+        Debug.Log("DEBUG : player score are saved");
     }
 }

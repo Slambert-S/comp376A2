@@ -12,6 +12,8 @@ public class mJ : MonoBehaviour
     //saving the number of hit made by each player
     private int playerOneHit = 0;
     private int playerTwoHit = 0;
+    public GameObject sceneChanger;
+    public GameObject gameHandler;
 
     private SpriteRenderer spriteHandler;
 
@@ -87,12 +89,18 @@ public class mJ : MonoBehaviour
         {
             playerTwoHit++;
         }
+
         bossHp--;
+
         if(bossHp <= 0)
         {
             refObj.transform.parent.GetComponent<playerStatus>().increaseScore(25);
+            gameHandler.GetComponent<multiPlayerSetUp>().savePlayerScore();
+            sceneChanger.GetComponent<menuMangment>().loadSecondLevel();
+            Debug.Log("Debug Boss is dead");
             Destroy(this.gameObject);
-            //to-do add code to change level
+
+            
         }
     }
 }

@@ -10,14 +10,15 @@ public class playerMouvment : MonoBehaviour
     private int xDirection = 0; // -1 left is pressed, 1 right is pressed
     private bool isGrounded = true;
     public float moveSpeed = 5;
-    public int jumpForce = 3;
+    public int jumpForce = 1;
     public int playerNumber;
     public Animator animator;
 
-    //Boolean for sprite animation
-    private bool mMoving;
-    private bool mGrounded;
-    private bool mFalling;
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 20f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
 
 
     // Start is called before the first frame update
@@ -74,8 +75,17 @@ public class playerMouvment : MonoBehaviour
             {
                 xDirection = 1;
             }
+            else if (Input.GetKey("c") && canDash)
+            {
+                StartCoroutine(Dash(-1));
+            }
+            else if (Input.GetKey("v") && canDash)
+            {
+                StartCoroutine(Dash(1));
+            }
 
-            if(xDirection != 0)
+
+            if (xDirection != 0)
             {
                 transform.Translate(xDirection * moveSpeed * Time.deltaTime, 0, 0);
             }
@@ -91,6 +101,15 @@ public class playerMouvment : MonoBehaviour
             else if (Input.GetKey("l"))
             {
                 xDirection = 1;
+
+            }
+            else if (Input.GetKey("y") && canDash)
+            {
+                StartCoroutine(Dash(-1));
+            }
+            else if (Input.GetKey("p") && canDash)
+            {
+                StartCoroutine(Dash(1));
             }
 
             if (xDirection != 0)
@@ -104,9 +123,21 @@ public class playerMouvment : MonoBehaviour
         //if (mGrounded && Input.GetButtonDown("Jump"))
         if (Input.GetKeyDown("space") && isGrounded == true)
         {
-           // rb2D.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+            rb2D.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
 
         }
 
+    }
+
+    private IEnumerator Dash(int direction)
+    {
+        canDash = false;
+        isDashing = true;
+        rb2D.velocity = new Vector2(transform.localScale.x * direction * dashingPower, 0f);
+        animator.SetTrigger("dash");
+        yield return new WaitForSeconds(dashingTime);
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
     }
 }

@@ -13,9 +13,12 @@ public class projectile : MonoBehaviour
     private GameObject belongTo;
     private playerStatus playerStatus;
 
+    public AudioSource splash;
+
     void Start()
     {
         lostHpValue = 50;
+        splash = GameObject.Find("splash").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -62,6 +65,7 @@ public class projectile : MonoBehaviour
         }
         else if(theCollision.gameObject.tag == "enemy")
         {
+            splash.Play();
             int point = theCollision.GetComponent<enemy_stat>().getRow();
 
             //Handeling the ray-cast to detect if multiple enemy overlaps 
@@ -95,16 +99,28 @@ public class projectile : MonoBehaviour
             Destroy(theCollision.gameObject);
             this.removeAmo();
 
+            
+
         }
         else if (theCollision.gameObject.tag == "witch")
         {
+            splash.Play();
             theCollision.gameObject.GetComponent<witchStatTraking>().hitOnWitch(playerStatus);
             this.removeAmo();
 
         }
         else if (theCollision.gameObject.tag == "mj")
         {
+            
+            splash.Play();
             theCollision.gameObject.GetComponent<mJ>().hitBoss(belongTo);
+            this.removeAmo();
+
+        }
+        else if (theCollision.gameObject.tag == "turnip")
+        {
+            splash.Play();
+            theCollision.gameObject.GetComponent<turnip>().hitBoss(belongTo);
             this.removeAmo();
 
         }

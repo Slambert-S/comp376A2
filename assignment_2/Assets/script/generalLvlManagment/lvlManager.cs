@@ -17,10 +17,10 @@ public class lvlManager : MonoBehaviour
     public GameObject witchRef;
 
     //variable related to the goon
-    private int lifeTime = 10;
+    private int lifeTime = 6;
     private int enemySpeed = 3;
     private float spownSpeed = 4.0f;
-
+    public AudioSource goonSound;
     //variable related to the game life time
     public int gameLenght = 300;
     private int nbGoon = 20;
@@ -29,9 +29,13 @@ public class lvlManager : MonoBehaviour
     public GameObject bossRef;
     private bool bossSpownTraker = false;
 
+    // Variable related to the witch
     private int nbWitch =0;
     private float firstWitchTime =0;
     private float secondaryWitchTime = 0;
+    public AudioSource witchSound;
+
+
     private atomicParameter AtomPar;
 
 
@@ -73,8 +77,18 @@ public class lvlManager : MonoBehaviour
 
 
         //invoke goon
-        InvokeRepeating("createEnemy", 1.0f, spownSpeed);
+        
+        if (stateLevelController.nbPlayer == "double") 
+        {
+            InvokeRepeating("createEnemy", 1.0f, spownSpeed);
+            InvokeRepeating("createEnemy", 1.0f, spownSpeed);
 
+        }
+        else
+        {
+            InvokeRepeating("createEnemy", 1.0f, spownSpeed);
+
+        }
         //get the first witch time spown
         firstWitchTime = Random.Range(15.0f, 45.0f);
 
@@ -105,12 +119,14 @@ public class lvlManager : MonoBehaviour
             Vector3 newZpos = setNewZPos(spownRow); // find the apropriate positions Z for the sprite
             newEnemy.transform.position = new Vector3(newSpown.transform.position.x, newSpown.transform.position.y, newZpos.z);
             newEnemy.transform.localScale = new Vector3(newScale, newScale, newScale);
+            goonSound.Play();
 
             nbGoon--;
         }
         if(nbGoon <= 10 && bossSpownTraker == false)
         {
             bossRef.SetActive(true);
+            createWitch();
             bossSpownTraker = true;
         }
 
@@ -118,14 +134,16 @@ public class lvlManager : MonoBehaviour
 
     private void createWitch()
     {
+
         int spownRow = Random.Range(1, spownLuck.Count);
         GameObject newSpown = selectSpownPoint(spownRow);
         GameObject newEnemy = Instantiate(witchRef);
+        newEnemy.GetComponent<despownAfterTime>().startLifeSpan();
         Vector3 newZpos = setNewZPos(spownRow); // find the apropriate positions Z for the sprite
         newEnemy.transform.position = new Vector3(newSpown.transform.position.x, newSpown.transform.position.y, newZpos.z);
 
         nbWitch++;
-
+        witchSound.Play();
         Debug.Log("Witch spown");
     }
 

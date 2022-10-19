@@ -17,7 +17,7 @@ public class playerStatus : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -39,15 +39,19 @@ public class playerStatus : MonoBehaviour
         }
         else
         {
-            animator.SetTrigger("popUp");
-            playerhp = playerhp - change;
-            Debug.Log("life : " + this.playerLive + "   HP : " + this.playerhp);
-            if (playerhp <= 0)
+            if(playerhp > 0)
             {
-                //to-do : call function to remove a life
-                this.removelife();
+                animator.SetTrigger("popUp");
+                playerhp = playerhp - change;
+                Debug.Log("life : " + this.playerLive + "   HP : " + this.playerhp);
+                if (playerhp <= 0)
+                {
 
+                    this.removelife();
+
+                }
             }
+            
         }
 
         this.updateUI();
@@ -126,6 +130,21 @@ public class playerStatus : MonoBehaviour
         this.playerhp = this.maxhp;
         this.gameObject.SetActive(true);
         this.SetSpecialMode(0);
+        this.updateUI();
+    }
+
+    public void startLevelSetting(int player)
+    {
+
+        if(player == 1)
+        {
+
+            this.playerScoor = stateLevelController.playerOneScore;
+        }
+        if(player == 2)
+        {
+            this.playerScoor = stateLevelController.playerTwoScore;
+        }
         this.updateUI();
     }
 }
